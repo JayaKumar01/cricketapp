@@ -11,6 +11,7 @@ import axios from "axios";
 import AddAcademy from "./components/AddAcademy";
 function App() {
   const [user, setUser] = useState("");
+  console.log("Hello World");
 
   useEffect(() => {
     axios
