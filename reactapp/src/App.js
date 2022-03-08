@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import authHeader from "./services/auth-header";
 import axios from "axios";
 import AddAcademy from "./components/AddAcademy";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import UserDashboard from "./components/User/UserDashboard";
+
 function App() {
   const [user, setUser] = useState("");
   console.log("Hello World");
@@ -42,6 +45,8 @@ function App() {
           <Route exact path="/" component={() => <Home user={user} />} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/addAcademy" component={AddAcademy} />
+          <Route exact path="/admin/dashboard" component={AdminDashboard} />
+          <Route exact path="/user/dashboard" component={UserDashboard} />
         </Switch>
       </div>
     </Router>

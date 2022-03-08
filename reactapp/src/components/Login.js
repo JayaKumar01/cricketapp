@@ -7,6 +7,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
   const [msg, setMsg] = useState("");
+  const [user, setUser] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ const Login = (props) => {
       .post("signin", data)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
+        setUser(res.data);
         setLogin(true);
         props.setUser(res.data);
       })
@@ -29,6 +31,11 @@ const Login = (props) => {
   };
 
   if (login) {
+    if (user.roles[0] === "ROLE_USER") {
+      return <Redirect to={"/user/dashboard"} />;
+    } else if (user.roles[0] === "ROLE_ADMIN") {
+      return <Redirect to={"/admin/dashboard"} />;
+    }
     return <Redirect to={"/"} />;
   }
 
