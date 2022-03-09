@@ -29,7 +29,7 @@ const Academy = (props) => {
     <div className="container mt-4">
       <div className="row">
         {filteredData.map((academy, id) => (
-          <AcademyCard academy={academy} />
+          <AcademyCard academy={academy} key={academy.academy_id} />
         ))}
       </div>
     </div>

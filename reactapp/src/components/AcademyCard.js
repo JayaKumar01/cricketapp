@@ -31,7 +31,10 @@ const AcademyCard = (props) => {
           <p className="card-text">{props.academy.academy_description}</p>
 
           {admin && (
-            <Link to="#" className="card-link">
+            <Link
+              to={`/admin/editAcademy/${props.academy.academy_id}`}
+              className="card-link"
+            >
               <ModeEditOutlinedIcon />
             </Link>
           )}

@@ -62,6 +62,12 @@ function App() {
             component={Dashboard}
             roles={"ROLE_USER"}
           />
+          <PrivateRoute
+            exact
+            path="/admin/editAcademy/:id"
+            component={AddAcademy}
+            roles={"ROLE_ADMIN"}
+          />
         </Switch>
       </div>
     </Router>
