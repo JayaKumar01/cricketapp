@@ -18,22 +18,9 @@ const Home = ({ user }) => {
 
     return (
       <>
-        <h1>Cricket Academy</h1>
-        <Search inputHandler={inputHandler} />
-        <Academy input={inputText} />
-
-        <div className="flex float-right">
-          <Link to={"/addAcademy"}>
-            <button
-              type="button"
-              className="btn btn-dark float-right"
-              id="add-academy"
-            >
-              <AddIcon />
-              Add Academy
-            </button>
-          </Link>
-        </div>
+        <Card>
+          <h2>You are at home page</h2>
+        </Card>
       </>
     );
   }
@@ -66,3 +53,20 @@ export default Home;
           <ul>{roles[0]}</ul>
         </h5>
       </div>*/
+
+/* <h1>Cricket Academy</h1>
+        <Search inputHandler={inputHandler} />
+        <Academy input={inputText} />
+
+        <div className="flex float-right">
+          <Link to={"/addAcademy"}>
+            <button
+              type="button"
+              className="btn btn-dark float-right"
+              id="add-academy"
+            >
+              <AddIcon />
+              Add Academy
+            </button>
+          </Link>
+        </div> */

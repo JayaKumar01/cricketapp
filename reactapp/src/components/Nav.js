@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getCurrentUser } from "../services/user-service";
 const Nav = (props) => {
+  const user = getCurrentUser();
+  const [admin, setIsAdmin] = useState(false);
   const handleLogout = () => {
     localStorage.clear();
     props.setUser(null);
   };
+
+  useEffect(() => {
+    if (user && user.roles[0] === "ROLE_ADMIN") setIsAdmin(true);
+  }, [user]);
 
   let buttons;
 
@@ -49,6 +56,14 @@ const Nav = (props) => {
         <Link to={"/"} className="navbar-brand text-light">
           Home
         </Link>
+        {user && (
+          <Link
+            to={`${admin ? "/admin" : "/user"}/dashboard`}
+            className="navbar-link text-light"
+          >
+            DashBoard
+          </Link>
+        )}
         {buttons}
       </div>
     </nav>
