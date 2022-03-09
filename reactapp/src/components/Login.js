@@ -31,11 +31,11 @@ const Login = (props) => {
   };
 
   if (login) {
-    if (user.roles[0] === "ROLE_USER") {
-      return <Redirect to={"/user/dashboard"} />;
-    } else if (user.roles[0] === "ROLE_ADMIN") {
-      return <Redirect to={"/admin/dashboard"} />;
-    }
+    // if (user.roles[0] === "ROLE_USER") {
+    //   return <Redirect to={"/user/dashboard"} />;
+    // } else if (user.roles[0] === "ROLE_ADMIN") {
+    //   return <Redirect to={"/admin/dashboard"} />;
+    // }
     return <Redirect to={"/"} />;
   }
 

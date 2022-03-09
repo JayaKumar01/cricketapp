@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import authHeader from "./services/auth-header";
 import axios from "axios";
 import AddAcademy from "./components/AddAcademy";
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import UserDashboard from "./components/User/UserDashboard";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [user, setUser] = useState("");
@@ -44,9 +44,24 @@ function App() {
           />
           <Route exact path="/" component={() => <Home user={user} />} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/addAcademy" component={AddAcademy} />
-          <Route exact path="/admin/dashboard" component={AdminDashboard} />
-          <Route exact path="/user/dashboard" component={UserDashboard} />
+          <PrivateRoute
+            exact
+            path="/admin/addAcademy"
+            component={AddAcademy}
+            roles={"ROLE_ADMIN"}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/dashboard"
+            component={Dashboard}
+            roles={"ROLE_ADMIN"}
+          />
+          <PrivateRoute
+            exact
+            path="/user/dashboard"
+            component={Dashboard}
+            roles={"ROLE_USER"}
+          />
         </Switch>
       </div>
     </Router>
