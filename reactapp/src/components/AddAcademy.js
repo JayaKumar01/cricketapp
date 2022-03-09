@@ -1,7 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Form, Col, Alert } from "react-bootstrap";
 import authHeader from "../services/auth-header";
+import { useParams, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 const AddAcademy = () => {
   const initialValue = {
     academy_name: "",
@@ -14,21 +17,37 @@ const AddAcademy = () => {
   const [inputValue, setInputValue] = useState(initialValue);
   const [msg, setMsg] = useState("");
   const [err, setErr] = useState(false);
+  const { id } = useParams();
+  const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(inputValue);
-    axios
-      .post("http://localhost:8080/academy/addAcademy", inputValue, {
-        headers: authHeader(),
-      })
-      .then((res) => {
-        console.log(res);
-        setMsg(res.data);
-        setInputValue(initialValue);
-      })
-      .catch((err) => console.log(err));
-    setErr(true);
+    if (id) {
+      axios
+        .put("http://localhost:8080/academy/editAcademy/" + id, inputValue, {
+          headers: authHeader(),
+        })
+        .then((respose) => {
+          setMsg("Updated Successfully");
+          setErr(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios
+        .post("http://localhost:8080/academy/addAcademy", inputValue, {
+          headers: authHeader(),
+        })
+        .then((res) => {
+          console.log(res);
+          setMsg(res.data);
+          setInputValue(initialValue);
+        })
+        .catch((err) => console.log(err));
+      setErr(true);
+    }
   };
 
   const academyChange = (e) => {
@@ -38,13 +57,25 @@ const AddAcademy = () => {
     });
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/academy/editAcademy/" + id, {
+        headers: authHeader(),
+      })
+      .then((res) => {
+        setInputValue(res.data);
+        // setMsg("Updated Succesfully");
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       {err && (
         <div className="alert alert-success alert-dismissible">
-          <button type="button" className="close" data-dismiss="alert">
+          {/* <button type="button" className="close" data-dismiss="alert">
             &times;
-          </button>
+          </button> */}
           <strong>{msg}</strong>
         </div>
       )}
