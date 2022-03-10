@@ -30,7 +30,7 @@ const Dashboard = () => {
             <button
               type="button"
               className="btn btn-dark float-right"
-              id="add-academy"
+              id="add-button"
             >
               <AddIcon />
               Add Academy

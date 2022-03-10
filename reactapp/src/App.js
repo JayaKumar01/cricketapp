@@ -11,6 +11,7 @@ import axios from "axios";
 import AddAcademy from "./components/AddAcademy";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "./components/Dashboard";
+import ViewCourse from "./components/ViewCourse";
 
 function App() {
   const [user, setUser] = useState("");
@@ -68,6 +69,7 @@ function App() {
             component={AddAcademy}
             roles={"ROLE_ADMIN"}
           />
+          <Route exact path="/editCourse" component={ViewCourse} />
         </Switch>
       </div>
     </Router>
