@@ -44,7 +44,7 @@ const AcademyCard = (props) => {
               <DeleteOutlineIcon />
             </Link>
           )}
-          <Link to="#" className="card-link">
+          <Link to={"/editCourse"} className="card-link">
             <ArrowForwardIcon />
           </Link>
         </div>
